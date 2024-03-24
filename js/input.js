@@ -20,7 +20,12 @@ save.addEventListener("click",
                 window.alert("トップページからアクセスし直してください。");
                 location.href = "index.html";
             }
-            let list = [];
+            let list = localStorage.getItem("memolist");
+            if (list === null) {
+                list = [];
+            } else {
+                list = JSON.parse(list);
+            }
             list.push({
                 latitude: cpos_latitude,
                 longitude: cpos_longitude,
