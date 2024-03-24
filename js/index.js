@@ -1,5 +1,5 @@
 //(1) ページ本体が読み込まれたタイミングで実行するコード
-let w_id;
+let w_id, gmap, c_point;
 const result = document.getElementById("result");
 const stopwatch = document.getElementById("stopwatch");
 
@@ -11,10 +11,16 @@ stopwatch.addEventListener("click",
 if (navigator.geolocation) {
     w_id = navigator.geolocation.watchPosition(
         (pos) => {
-            msg = `緯度:${pos.coords.latitude}<br>
-                経度:${pos.coords.longitude}<br>
-                方角:${pos.coords.heading}`;
-            result.innerHTML = msg;
+            c_point = new google.maps.LatLng(
+                pos.coords.latitude, pos.coords.longitude);
+            gmap = new google.maps.Map(
+                result,
+                {
+                    zoom: 14,
+                    center: c_point,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+            );
         },
         (err) => {
             const msgs = [
