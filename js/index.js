@@ -42,4 +42,3 @@ if (navigator.geolocation) {
 } else {
     window.alert("geolocation APIに対応しているブラウザーでアクセスしてください。")
 }
-window.alert(result);
