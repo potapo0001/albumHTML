@@ -14,6 +14,23 @@ save.addEventListener("click",
                 window.alert("件名、メモはいずれも必須です。");
                 return;
             }
+            const cpos_latitude = sessionStorage.getItem("cpos_latitude");
+            const cpos_longitude = sessionStorage.getItem("cpos_longitude");
+            if (cpos_latitude === null || cpos_longitude === null) {
+                window.alert("トップページからアクセスし直してください。");
+                location.href = "index.html";
+            }
+            let list = [];
+            list.push({
+                latitude: cpos_latitude,
+                longitude: cpos_longitude,
+                subject: subject.value,
+                memo: memo.value,
+                updated: new Date()
+            });
+            list = JSON.stringify(list);
+            localStorage.setItem("memolist",list);
+            location.href = "index.html";
     }, false
 );
 

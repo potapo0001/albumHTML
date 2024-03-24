@@ -21,6 +21,8 @@ if (navigator.geolocation) {
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 }
             );
+            sessionStorage.setItem("cpos_latitude", pos.coords.latitude);
+            sessionStorage.setItem("cpos_longitude", pos.coords.longitude);
         },
         (err) => {
             const msgs = [
