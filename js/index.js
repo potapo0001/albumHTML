@@ -15,7 +15,7 @@ const showmap = (e) => {
             map: gmap,
             position: point
         });
-        const msg = `<strong>${h(item.subject)}></strong><br>${h(item.memo)}`;
+        const msg = `<strong>${h(item.subject)}</strong><br>${h(item.memo)}`;
         const info = new google.maps.InfoWindow({
             content: msg
         });
