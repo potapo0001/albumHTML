@@ -3,6 +3,30 @@ let w_id, gmap, c_point;
 const result = document.getElementById("result");
 const stopwatch = document.getElementById("stopwatch");
 
+const showmap = (e) => {
+    const id = e.target.dataset.id;
+    let list = localStorage.getItem("memolist");
+    if (list !== null) {
+        list = JSON.parse(list);
+        const item = list[id];
+        const point = new google.maps.LatLng(
+            item.latitude, item.longitude);
+        const marker = new google.maps.Marker({
+            map: gmap,
+            position: point
+        });
+        const msg = `<strong>${h(item.subject)}></strong><br>${h(item.memo)}`;
+        const info = new google.maps.InfoWindow({
+            content: msg
+        });
+        google.maps.event.addListener(marker,"click",
+            () => {
+                info.open(gmap, marker);
+            });
+            gmap.setCenter(point);
+    }
+};
+
 const showmemo = () => {
     let msg = "";
     let list = localStorage.getItem("memolist");
