@@ -1,5 +1,8 @@
 body {
     background-color: #ccc;
+    background-image: linear-gradient(
+        to buttom, #aaa, #fff
+    );
 }
 
 #result {
