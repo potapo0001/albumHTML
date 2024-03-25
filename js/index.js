@@ -4,6 +4,7 @@ const result = document.getElementById("result");
 const stopwatch = document.getElementById("stopwatch");
 
 const showmap = (e) => {
+    //(1)メモタイトルをタップした場合の処理を定義
     const id = e.target.dataset.id;
     let list = localStorage.getItem("memolist");
     if (list !== null) {
@@ -15,7 +16,7 @@ const showmap = (e) => {
             map: gmap,
             position: point
         });
-        const msg = `<strong>${h(item.subject)}</strong><br>${h(item.memo)}`;
+        const msg = `<strong>${h(item.subject)}</strong><br />${h(item.memo)}`;
         const info = new google.maps.InfoWindow({
             content: msg
         });
