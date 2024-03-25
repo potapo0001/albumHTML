@@ -1,10 +1,16 @@
 //(1) ページ本体が読み込まれたタイミングで実行するコード
 let w_id, gmap, c_point;
+let m_list = new google.maps.MVCArray();
 const result = document.getElementById("result");
 const stopwatch = document.getElementById("stopwatch");
 
+const removemarker = () => {
+    m_list.forEach((marker, index) => { marker.setMap(null); });
+};
+
 const showmap = (e) => {
     //(1)メモタイトルをタップした場合の処理を定義
+    removemarker();
     const id = e.target.dataset.id;
     let list = localStorage.getItem("memolist");
     if (list !== null) {
@@ -25,6 +31,7 @@ const showmap = (e) => {
                 info.open(gmap, marker);
             });
             gmap.setCenter(point);
+            m_list.push(marker);
     }
 };
 
