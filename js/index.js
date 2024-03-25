@@ -3,6 +3,24 @@ let w_id, gmap, c_point;
 const result = document.getElementById("result");
 const stopwatch = document.getElementById("stopwatch");
 
+const showmemo = () => {
+    let msg = "";
+    let list = localStorage.getItem("memolist");
+    if (list !== null) {
+        list = JSON.parse(list);
+        for (let i = 0; i < list.length; i++) {
+            msg += `<li>
+            <a href="#" class="show" data-id="${h(i)}">
+                ${h(list[i].subject)}
+                </a>
+                <a class="del" href="#" data-id="${h(i)}">×</a>
+                </li>`;
+        }
+        const r_list = document.getElementById("list");
+        r_list.innerHTML = msg;
+    }
+};
+
 stopwatch.addEventListener("click",
     (e) => {
         navigator.geolocation.clearWatch(w_id);
@@ -42,3 +60,4 @@ if (navigator.geolocation) {
 } else {
     window.alert("geolocation APIに対応しているブラウザーでアクセスしてください。")
 }
+showmemo();
