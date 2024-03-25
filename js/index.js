@@ -3,6 +3,7 @@ let w_id, gmap, c_point;
 let m_list = new google.maps.MVCArray();
 const result = document.getElementById("result");
 const stopwatch = document.getElementById("stopwatch");
+const showcurrent = document.getElementById("showcurrent");
 
 const removemarker = () => {
     m_list.forEach((marker, index) => { marker.setMap(null); });
@@ -62,6 +63,14 @@ stopwatch.addEventListener("click",
         navigator.geolocation.clearWatch(w_id);
     }, false
 );
+
+showcurrent.addEventListener("click",
+    (e) => {
+        removemarker();
+        gmap.setCenter(c_point);
+    }, false
+);
+
 if (navigator.geolocation) {
     w_id = navigator.geolocation.watchPosition(
         (pos) => {
