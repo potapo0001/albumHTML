@@ -43,6 +43,10 @@ const showmemo = () => {
         }
         const r_list = document.getElementById("list");
         r_list.innerHTML = msg;
+        const subjects = document.querySelectorAll("#list a.show");
+        for (let subject of subjects) {
+            subject.addEventListener("click", showmap, false);
+        }
     }
 };
 

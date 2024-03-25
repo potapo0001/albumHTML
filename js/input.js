@@ -2,7 +2,7 @@
 const subject = document.getElementById("subject");
 const memo = document.getElementById("memo");
 const save = document.getElementById("save");
-const cansel = document.getElementById("cansel");
+const cancel = document.getElementById("cancel");
 
 save.addEventListener("click",
     (e) => {
@@ -34,13 +34,13 @@ save.addEventListener("click",
                 updated: new Date()
             });
             list = JSON.stringify(list);
-            localStorage.setItem("memolist",list);
+            localStorage.setItem("memolist", list);
             location.href = "index.html";
     }, false
 );
 
-cansel.addEventListener("click",
-    function () {
+cancel.addEventListener("click",
+    () => {
         //(2) [キャンセル]ボタンクリック時に実行するコード
         location.href = "index.html";
     }, false
