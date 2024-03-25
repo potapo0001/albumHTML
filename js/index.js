@@ -36,6 +36,17 @@ const showmap = (e) => {
     }
 };
 
+const removememo = (e) => {
+    removemarker();
+    const id = e.target.dataset.id;
+    let list = JSON.parse(localStorage.getItem("memolist"));
+    list = list.filter((memo, c_index, ary) => {
+        return id !== c_index.toString();
+    });
+    localStorage.setItem("memolist", JSON.stringify(list));
+    showmemo();
+};
+
 const showmemo = () => {
     let msg = "";
     let list = localStorage.getItem("memolist");
@@ -54,6 +65,10 @@ const showmemo = () => {
         const subjects = document.querySelectorAll("#list a.show");
         for (let subject of subjects) {
             subject.addEventListener("click", showmap, false);
+        }
+        const deletes = document.querySelectorAll("#list a.del");
+        for (let del of deletes) {
+            del.addEventListener("click", removememo, false);
         }
     }
 };
